@@ -8,3 +8,9 @@ Uses [markovify library](https://github.com/jsvine/markovify) and discord.py.
 
 ## Setup
 Create ``config.py`` in root directory with line ``TOKEN = 'yOurB0tT0k3nHere'``
+
+Use python3
+
+Install discord.py and markovify
+
+run ``python3 bot.py``

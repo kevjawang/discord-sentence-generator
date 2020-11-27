@@ -26,6 +26,7 @@ async def makesentences(ctx):
     if guild:
         guild = ctx.guild
         all_messages = [];
+        to_send = "Generated messages for channels\n";
         for channel in guild.text_channels:
             if is_channel_viewable(bot, channel):
                 channel_messages = await channel.history(limit=1000).flatten()
@@ -33,12 +34,12 @@ async def makesentences(ctx):
                 result = stringlogic.make_markov_sentence(message_strings, bot)
                 all_messages.extend(message_strings)
                 if result and len(result) > 0:
-                    to_send = "Generated message for channel " + channel.name + ": \n" + result
-                    await ctx.channel.send(to_send)
+                    to_send += (channel.name + ": \n" + result + "\n\n")
         complete_result = stringlogic.make_markov_sentence(all_messages, bot)
         if complete_result and len(complete_result) > 0:
-            to_send = "Generated message for all channels:\n" + complete_result
-            await ctx.channel.send(to_send)
+            to_send += ("All channels:\n" + complete_result)
+
+        await ctx.channel.send(to_send)
 
 @bot.event
 async def on_error(event, *args, **kwargs):
