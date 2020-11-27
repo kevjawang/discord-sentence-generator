@@ -16,7 +16,7 @@ def replace_mentions(string_to_format, bot):
             .replace('&', '')
         user = get(bot.get_all_members(), id=int(discord_name))
         if user:
-            string_to_format = string_to_format.replace(mention, f'@{user.name}')
+            string_to_format = string_to_format.replace(mention, f'@ {user.name}')
         else:
             string_to_format = string_to_format.replace(mention, '')
     return string_to_format
